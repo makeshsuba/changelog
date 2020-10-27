@@ -1,0 +1,41 @@
+<div style="padding:0 16%;">
+  <form [formGroup]="modalFormGroup" (ngSubmit)="onSubmit()">
+    <div class='modal-header modal-header-custom'>
+      <h4 class='modal-title' style='width: 100%; margin:0;font-size: 27px;'>Add / Update Log</h4>
+    </div>
+
+    <div class="form-group">
+      <input type="text" placeholder="Log Title" formControlName="logTitle" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.logTitle.errors }" />
+      <div *ngIf="submitted && f.logTitle.errors" class="invalid-feedback">
+        <div *ngIf="f.logTitle.errors.required">Log Title is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <select class="custom-select" formControlName='logTypeId'
+        [ngClass]="{ 'is-invalid': submitted && f.logTypeId.errors }">
+        <option value="0" disabled>Choose Log Type
+        </option>
+        <option *ngFor="let log of logType" [value]="log.logTypeId">{{log.logType}}</option>
+      </select>
+
+      <div *ngIf="f.logTypeId.touched && f.logTypeId.invalid" class="invalid-feedback">
+        <div *ngIf="f.logTypeId.errors.required">Log Type is required</div>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <textarea matInput placeholder="Log Description" formControlName="logDescription" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.logDescription.errors }"></textarea>
+      <div *ngIf="submitted && f.logDescription.errors" class="invalid-feedback">
+        <div *ngIf="f.logDescription.errors.required">Description is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class='modal-footer'>
+        <button class='btn btn-outline-success'>Submit</button>
+        <button type='button' class='btn btn-outline-dark' (click)='activeModal.close("Close click")'>Close</button>
+      </div>
+    </div>
+  </form>
+</div>

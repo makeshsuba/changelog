@@ -1,0 +1,115 @@
+
+<div class="container" style="padding-top: 60px">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card-group">
+        <div class="card p-4">
+          <div class="card-body" *ngIf="loggedIn === false">
+            <div *ngIf="registerShow === false">
+              <button type="submit" class="btn btn-block btn-success">
+                Login
+              </button>
+              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input
+                    type="text"
+                    formControlName="username"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+                  />
+                  <div
+                    *ngIf="submitted && f.username.errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f.username.errors.required">
+                      Username is required
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    formControlName="password"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                  />
+                  <div
+                    *ngIf="submitted && f.password.errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f.password.errors.required">
+                      Password is required
+                    </div>
+                    <div *ngIf="f.password.errors.minlength">
+                      Password must be at least 6 characters
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <p
+                    style="color: #e92626; font-size: 20px; font-weight: normal"
+                    Class="success"
+                    align="left"
+                  >
+                    {{ errorMessage }}
+                  </p>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <button type="submit" class="btn btn-primary px-4">
+                      Login
+                    </button>
+                  </div>
+                  <div class="col-6 text-right">
+                    <button
+                      type="button"
+                      class="btn btn-primary px-0"
+                      (click)="registerToggle()"
+                    >
+                      Register
+                    </button>
+                  </div>
+                </div>
+              </form>
+              <hr style="border-top: 1px solid #eee" />
+              <div class="row">
+                <div class="col-6">
+                  <button
+                    *ngIf="loggedIn === false"
+                    (click)="socialSignIn('google')"
+                    style="float: left"
+                    class="btn btn-google"
+                  >
+                    <a href="#" class="fa fa-google"></a>Google Sign In
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button
+                    *ngIf="loggedIn === false"
+                    (click)="socialSignIn('google')"
+                    style="float: left"
+                    class="btn btn-facebook"
+                  >
+                    <a href="#" class="fa fa-facebook"></a>Facebook Sign In
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="registerShow" class="container">
+              <div class="row justify-content-center">
+                <div class="col-4">
+                  <app-user-register
+                    (messageToEmit)="getMessage($event)"
+                  ></app-user-register>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+ .fa {
+        padding: 14px;
+        font-size: 20px;
+        text-align: center;
+        text-decoration: none;
+        color:white;
+        border-radius:50%;
+      }
+
+      /* Add a hover effect if you want */
+      .fa:hover {
+        opacity: 0.7;
+        color:white;
+      }
+
+.btn-google, .btn-facebook
+{
+  &:hover{
+    color:white !important;
+  }
+}
+      /* Facebook */
+      .fa-facebook {
+        background: #3b5998;
+        color: white;
+      }
+      .fa-google {
+			  background: #dd4b39;
+			}
